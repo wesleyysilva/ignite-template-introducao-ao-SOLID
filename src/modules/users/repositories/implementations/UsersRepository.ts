@@ -35,20 +35,17 @@ class UsersRepository implements IUsersRepository {
   }
 
   findById(id: string): User | undefined {
-    return this.users.find((user) => user.id === id);
+    const user = this.users.find((user) => user.id === id);
+    return user;
   }
 
   findByEmail(email: string): User | undefined {
-    return this.users.find((user) => user.email === email);
+    const user = this.users.find((user) => user.email === email);
+    return user;
   }
 
   turnAdmin(receivedUser: User): User {
     const user = this.users.find((user) => user.id === receivedUser.id);
-
-    if (!user) {
-      throw new Error("User node Found");
-    }
-
     user.admin = true;
     user.updated_at = new Date();
 
